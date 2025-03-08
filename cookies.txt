@@ -1,0 +1,11 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+
+.google.com	TRUE	/	FALSE	1772991562	SIDCC	AKEyXzUtDDByweTTieGlSSOQDmV07w8GzC7ARyyOCIJzqHPWJBdd5dNETABZNI94nuDUIziXqQ
+.google.com	TRUE	/	TRUE	1772991562	__Secure-1PSIDCC	AKEyXzW0jN-o4r_qTwT394Q9CBo1aC2BkuuG9ZsJB861u_SWpT9Mu_xErYmLYIqvA06zMKI0TQ
+.google.com	TRUE	/	TRUE	1772991572	__Secure-3PSIDCC	AKEyXzU1WtgPvHFLmrJs8EanouZdfAJgQT8JuFrP8273f_WHMbF8ICto58cG_C2RvWFBbp1rXQ
+.youtube.com	TRUE	/	FALSE	1772991573	SIDCC	AKEyXzWOKKkVyDPZsSqfZ65TfeVCflzkc7-1YTXMGUnncToPixwJqMeRVM6vgka8ppIYLb-r0A
+.youtube.com	TRUE	/	TRUE	1772991573	__Secure-1PSIDCC	AKEyXzU3tNvkN2kMprBsIvBwdlQTKBtEisNdPQmL0sDcehY6AF_h5hrr7RnOvs4Pa72M8NjUGg
+.youtube.com	TRUE	/	TRUE	1772991573	__Secure-3PSIDCC	AKEyXzVTCJPLbZqS76effDiWxCIVoPBGqhCZ37e15mxVyMZqsi26W9obPieqvzgLLcOHTT-Org
