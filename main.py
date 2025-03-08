@@ -1,10 +1,11 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
 import yt_dlp
 import requests
 import logging
 from time import sleep
 from urllib.parse import unquote
+import os
 
 app = FastAPI()
 
@@ -37,6 +38,7 @@ def stream_audio(url):
             with requests.get(url, stream=True, timeout=(3, 5)) as r:
                 r.raise_for_status()
                 for chunk in r.iter_content(chunk_size=16384):
+                    
                     if chunk:
                         yield chunk
                 return
@@ -46,7 +48,7 @@ def stream_audio(url):
     
     raise HTTPException(status_code=500, detail="Failed to stream audio")
 
-@app.get("/api/stream")
+@app.get("/stream")
 async def stream_audio_endpoint(video_url: str):
     video_url = unquote(video_url)
     
@@ -57,3 +59,8 @@ async def stream_audio_endpoint(video_url: str):
     except Exception as e:
         logger.error(f"Error processing request: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
