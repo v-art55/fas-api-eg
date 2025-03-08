@@ -38,7 +38,7 @@ def stream_audio(url):
         try:
             with requests.get(url, stream=True, timeout=(3, 5)) as r:
                 r.raise_for_status()
-                for chunk in r.iter_content(chunk_size=16384):
+                for chunk in r.iter_content(chunk_size=1024):
                     
                     if chunk:
                         yield chunk
