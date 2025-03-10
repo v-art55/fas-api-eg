@@ -22,11 +22,13 @@ USER_AGENTS = [
 ]
 
 def get_audio_stream_url(video_url, request: Request = None):
-    # Get client's IP if available (might help with geolocation issues)
-    client_ip = request.client.host if request and hasattr(request, 'client') else None
+   
     
-    # Get random user agent
-    user_agent = random.choice(USER_AGENTS)
+    username = os.environ.get('YOUTUBE_USERNAME')
+    password = os.environ.get('YOUTUBE_PASSWORD')
+    
+    if not username or not password:
+        raise ValueError("YouTube credentials not configured")
     
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -34,25 +36,10 @@ def get_audio_stream_url(video_url, request: Request = None):
         'noplaylist': True,
         'extract_flat': False,
         'skip_download': True,
-        'cookiefile': 'cookies.txt',  # Use cookies for authentication
-        'user_agent': user_agent,
-        'nocheckcertificate': True,
-        'geo_bypass': True,
-        'http_headers': {
-            'User-Agent': user_agent,
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://www.google.com/',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'cross-site',
-            'Pragma': 'no-cache',
-            'Cache-Control': 'no-cache',
-        }
+        'username': username,
+        'password': password,
+        'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     }
-    
     # Add a random sleep to mimic human behavior
     sleep(random.uniform(0.5, 2.0))
     
